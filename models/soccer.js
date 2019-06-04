@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Soccer.associate = function(models) {
-      Soccer.hasMany(models.Offer, {
+      Soccer.belongsToMany(models.Offer, {
         through: "SoccerOffer"
       })
     }
