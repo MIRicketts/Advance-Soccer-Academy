@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Offer = sequelize.define(
+  const Offers = sequelize.define(
     "Offer",
     {
       // column data
@@ -13,11 +13,11 @@ module.exports = function(sequelize, DataTypes) {
   // Offer.associate = function(models) {
   //   Offer.hasMany(models.modelName)
   // }
-  Offer.associate = function(models) {
-    Offer.belongsToMany(models.Soccer, {
+  Offers.associate = function(models) {
+    Offers.belongsToMany(models.Soccer, {
       through: "SoccerOffer"
     });
   }
   
-  return Offer;
+  return Offers;
 }
