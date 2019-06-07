@@ -14,7 +14,7 @@ app.post("/api/soccer", function(req, res){
   });
 });
 
-// Get user(Read)
+// Get all user(Read)
 app.get("/api/soccer", function(req, res){
   db.Soccer.findAll()
   .then(dbUserData => res.json(dbUserData))
