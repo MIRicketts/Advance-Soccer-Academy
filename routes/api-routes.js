@@ -16,8 +16,12 @@ app.post("/api/soccer", function(req, res){
 
 // Get all user(Read)
 app.get("/api/soccer", function(req, res){
+  
   db.Soccer.findAll()
-  .then(dbUserData => res.json(dbUserData))
+  .then(dbUserData => {
+    console.log(dbUserData);
+    res.json(dbUserData)
+  })
   .catch(err =>{
     console.log(err);
     res.json(err);

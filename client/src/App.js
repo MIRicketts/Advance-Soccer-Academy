@@ -1,30 +1,32 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import login from "./pages/login";
+
 import home from "./pages/home";
 import offer from "./pages/offer"
 import Navbar from './component/navbar';
+import Login from './Login';
+// import userCard from "./component/userCard"
+
 
 
 function App() {
-  return (
-    <Router>
-      <div>
-        {/* put navbar on each page. everything in the switch gets a navbar */}
-        <Navbar />
+  
+    return (
+      <Router>
+         {/* put navbar on each page. everything in the switch gets a navbar */}
+         <Navbar />
         <Switch>
-          <Route exact path="/" component={home} />
-          <Route exact path="/offer" component={offer} />
-          <Route exact path="/login" component={login} />
-          <Route render={() => <h2> 404 Page!!</h2>} />
+          <Route path='/' exact={true} component={home} />
+          <Route path="/home" component={home} />
+          <Route path='/Login' component={Login} />
+          <Route path="/offer" component={offer} />
+          <Router render={() => <h2> 404 Page!!</h2>} />
         </Switch>
-      </div>
-    </Router>
+      </Router>
+    );
+ 
+  }
 
-  )
-
-
-}
 
 
 
