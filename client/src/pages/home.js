@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import BackgroundImg from '../component/soccer-background.jpg';
 import { createUser } from "../utils/api";
 
@@ -8,7 +8,7 @@ class Home extends Component {
     name: "",
     age: "",
     email: "",
-    passWord: "",
+    password: "",
     activeTab: "login",
     isLoggedIn: false
   };
@@ -25,7 +25,7 @@ class Home extends Component {
     event.preventDefault();
     createUser({
       email: this.state.email,
-      passWord: this.state.passWord
+      password: this.state.password
     })
       .then(({ data: createUserResponse }) => {
         console.log(createUserResponse);
@@ -42,7 +42,7 @@ class Home extends Component {
       name: this.state.name,
       email: this.state.email,
       age: this.state.age,
-      passWord: this.state.passWord
+      password: this.state.password
     })
       .then(({ data: createUserResponse }) => {
         console.log(createUserResponse);
@@ -71,7 +71,7 @@ class Home extends Component {
 
   render() {
     if (this.state.isLoggedIn) {
-      return <Redirect to="/offer"/>
+      return <Redirect to="/offer" />
     }
 
     return (
@@ -82,84 +82,72 @@ class Home extends Component {
             backgroundImage: `url(${BackgroundImg})`,
             backgroundSize: "cover",
             backgroundBlendMode: "multiply",
-            backgroundColor: "gray"
+            backgroundPosition: "center",
+            height: "100%"
+
 
           }} >
-          <h1 className="display-2">Advance Soccer Scheduler</h1>
+          <h1 className="display-2"><strong>Advance Soccer Scheduler</strong></h1>
           <h3>Organize yourself</h3>
-        </div>
-        {/* End navbar styling */}
 
-        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li className="nav-item">
-            <button className={`nav-link ${this.state.activeTab === "login" ? "active" : ""}`} data-toggle="pill" role="tab" aria-controls="pills-home" onClick={() => this.handleTabSwitch("login")}>Login</button>
-          </li>
-          <li className="nav-item">
-            <button className={`nav-link ${this.state.activeTab === "signup" ? "active" : ""}`} data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" onClick={() => this.handleTabSwitch("signup")}>Sign Up</button>
-          </li>
-        </ul>
-        <div className="tab-content" id="pills-tabContent">
-          <div className={`tab-pane fade show ${this.state.activeTab === "login" ? "active" : ""}`} role="tabpanel">
-            <form onSubmit={this.handleLoginSubmit}>
-              <label>
-                Email:
+
+          <div className="card card-body"
+           >
+            <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li className="nav-item">
+                <button className={`nav-link ${this.state.activeTab === "login" ? "active" : ""}`} data-toggle="pill" role="tab" aria-controls="pills-home" onClick={() => this.handleTabSwitch("login")}>Login</button>
+              </li>
+              <li className="nav-item">
+                <button className={`nav-link ${this.state.activeTab === "signup" ? "active" : ""}`} data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" onClick={() => this.handleTabSwitch("signup")}>Sign Up</button>
+              </li>
+            </ul>
+          
+
+
+          <div className="tab-content" id="pills-tabContent">
+            <div className={`tab-pane fade show ${this.state.activeTab === "login" ? "active" : ""}`} role="tabpanel">
+              <form onSubmit={this.handleLoginSubmit}>
+                <label>
+                  Email:
   <input type="text" name="email" value={this.state.email} onChange={this.handleInputChange} />
-              </label>
-              <label>
-                Password:
-  <input type="text" name="passWord" value={this.state.passWord} onChange={this.handleInputChange} />
-              </label>
+                </label>
+                <label>
+                  Password:
+  <input type="text" name="password" value={this.state.password} onChange={this.handleInputChange} />
+                </label>
+                <input type="submit" value="Login" />
+              </form>
+            </div>
 
-              <input type="submit" value="Login" />
 
-            </form>
-          </div>
-
-          <div className={`tab-pane fade show ${this.state.activeTab === "signup" ? "active" : ""}`} role="tabpanel">
-            <form onSubmit={this.handleSignUpSubmit}>
-              <label>
-                Name:
+            <div className={`tab-pane fade show ${this.state.activeTab === "signup" ? "active" : ""}`} role="tabpanel">
+              <form onSubmit={this.handleSignUpSubmit}>
+                <label>
+                  Name:
   <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange} />
-              </label>
-              <label>
-                Age:
+                </label>
+                <label>
+                  Age:
   <input type="text" name="age" value={this.state.age} onChange={this.handleInputChange} />
-              </label>
+                </label>
 
-              <label>
-                Email:
+                <label>
+                  Email:
   <input type="text" name="email" value={this.state.email} onChange={this.handleInputChange} />
-              </label>
-              <label>
-                Password:
-  <input type="text" name="passWord" value={this.state.passWord} onChange={this.handleInputChange} />
-              </label>
-
-              <input type="submit" value="Sign Up" />
-
-            </form>
+                </label>
+                <label>
+                  Password:
+  <input type="text" name="password" value={this.state.passWord} onChange={this.handleInputChange} />
+                </label>
+                <input type="submit" value="Sign Up" />
+              </form>
+            </div>
           </div>
+
+          </div>
+
         </div>
 
-
-
-
-        {/* Start page Client and Offers */}
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-12 col-md-12">
-
-            </div>
-
-          </div>
-          <div className="row justify-content-center">
-            <div className="col-12 col-md-12">
-
-
-            </div>
-
-          </div>
-        </div>
       </React.Fragment>
     )
 

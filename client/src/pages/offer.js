@@ -1,5 +1,7 @@
 import React from "react";
 import BackgroundImg from '../component/soccer-background.jpg';
+import UserCard from "../component/userCard"
+import OfferCard from "../component/offerCard"
 
 
 function Offer(){
@@ -15,7 +17,12 @@ return(
           }} >
           <h1 className="display-2">Advance Soccer Scheduler</h1>
           <h3>Organize yourself</h3>
-        </div>
+        
+</div>
+<div className="row">
+<UserCard />
+<OfferCard />
+</div>
 </React.Fragment>
 
 )

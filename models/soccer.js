@@ -18,8 +18,11 @@ module.exports = function(sequelize, DataTypes) {
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   }  
+    },
+    {
+      timestamps: false
     });
 
     Soccer.associate = function(models) {
@@ -47,7 +50,7 @@ module.exports = function(sequelize, DataTypes) {
   // In this case, before a User is created, we will automatically hash their password
   Soccer.beforeCreate(function(soccer){
     console.log(soccer);
-    soccer.password = bcrypt.hashSync(soccer.password, bcrypt.genSaltSync(10), Null);
+    soccer.password = bcrypt.hashSync(Soccer.password, bcrypt.genSaltSync(10), null);
   });
   
   return Soccer;
