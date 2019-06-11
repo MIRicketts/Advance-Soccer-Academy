@@ -1,10 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import BackgroundImg from '../component/soccer-background.jpg';
 import UserCard from "../component/userCard"
 import OfferCard from "../component/offerCard"
 
 
-function Offer(){
+function Offer(props){
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    age: "",
+    email: ""
+  });
+
+  useEffect(() => {
+    const userInfo = props.location.state ? props.location.state.userInfo : {name: "Marsden", age: 99, email: "marsden@gmail.com"}
+    setUserInfo(userInfo);
+  })
+
 return(
 <React.Fragment>
 <div className="jumbotron jumbotron-fluid text-center text-light"
@@ -20,7 +31,8 @@ return(
         
 </div>
 <div className="row">
-<UserCard />
+<UserCard userInfo={userInfo}/>
+
 <OfferCard />
 </div>
 </React.Fragment>

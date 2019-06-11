@@ -10,7 +10,8 @@ class Home extends Component {
     email: "",
     password: "",
     activeTab: "login",
-    isLoggedIn: false
+    isLoggedIn: false,
+    createUserResponse: {}
   };
 
   handleInputChange = event => {
@@ -47,7 +48,8 @@ class Home extends Component {
       .then(({ data: createUserResponse }) => {
         console.log(createUserResponse);
         this.setState({
-          activeTab: "login"
+          activeTab: "login",
+          createUserResponse: createUserResponse
         })
       })
       .catch(err => console.log(err));
@@ -71,7 +73,12 @@ class Home extends Component {
 
   render() {
     if (this.state.isLoggedIn) {
-      return <Redirect to="/offer" />
+      return <Redirect to={{
+        pathname: "/offer",
+        state: {
+          userInfo: this.state.createUserResponse
+        }
+      }} />
     }
 
     return (
@@ -83,22 +90,25 @@ class Home extends Component {
             backgroundSize: "cover",
             backgroundBlendMode: "multiply",
             backgroundPosition: "center",
-            height: "100%"
-
+            height: "100vh",
+        
 
           }} >
           <h1 className="display-2"><strong>Advance Soccer Scheduler</strong></h1>
           <h3>Organize yourself</h3>
 
 
-          <div className="card card-body"
+          <div className="card-body col-md-2 text-center bg-dark mx-auto"
+          style = {{
+            marginTop: "120px"
+          }}
            >
             <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
               <li className="nav-item">
-                <button className={`nav-link ${this.state.activeTab === "login" ? "active" : ""}`} data-toggle="pill" role="tab" aria-controls="pills-home" onClick={() => this.handleTabSwitch("login")}>Login</button>
+                <a className={`nav-link ${this.state.activeTab === "login" ? "active" : ""}`} href="#pills-profile" data-toggle="pill" role="tab" aria-controls="pills-home" onClick={() => this.handleTabSwitch("login")}>Login</a>
               </li>
               <li className="nav-item">
-                <button className={`nav-link ${this.state.activeTab === "signup" ? "active" : ""}`} data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" onClick={() => this.handleTabSwitch("signup")}>Sign Up</button>
+                <a className={`nav-link ${this.state.activeTab === "signup" ? "active" : ""}`} data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" onClick={() => this.handleTabSwitch("signup")}>Sign Up</a>
               </li>
             </ul>
           
@@ -137,7 +147,7 @@ class Home extends Component {
                 </label>
                 <label>
                   Password:
-  <input type="text" name="password" value={this.state.passWord} onChange={this.handleInputChange} />
+  <input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                 </label>
                 <input type="submit" value="Sign Up" />
               </form>
@@ -147,6 +157,7 @@ class Home extends Component {
           </div>
 
         </div>
+        <div className="card card-container-fluid"></div>
 
       </React.Fragment>
     )

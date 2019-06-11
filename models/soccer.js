@@ -50,7 +50,7 @@ module.exports = function(sequelize, DataTypes) {
   // In this case, before a User is created, we will automatically hash their password
   Soccer.beforeCreate(function(soccer){
     console.log(soccer);
-    soccer.password = bcrypt.hashSync(Soccer.password, bcrypt.genSaltSync(10), null);
+    soccer.password = bcrypt.hashSync(soccer.password, bcrypt.genSaltSync(10), null);
   });
   
   return Soccer;

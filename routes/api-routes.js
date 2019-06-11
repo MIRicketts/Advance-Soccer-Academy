@@ -6,6 +6,7 @@ module.exports = (app) => {
 
   // Create new user
 app.post("/api/soccer", function(req, res){
+  console.log(req.body);
   db.Soccer.create(req.body)
   .then(dbUserData => res.json(dbUserData))
   .catch(err =>{
